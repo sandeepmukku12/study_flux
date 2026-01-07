@@ -23,6 +23,33 @@ const createUser = async (userBody) => {
   return user;
 };
 
+// Get current user
+const getUserProfileById = async (userId) => {
+  const user = await User.findById(userId).select("-password");
+  
+  return user;
+};
+
+// Update user name or password
+const updateUserProfileById = async (userId, userBody) => {
+  const user = await User.findById(userId);
+
+  if (userBody.name) {
+    user.name = userBody.name;
+  }
+
+  if (userBody.password) {
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(userBody.password, salt);
+  }
+
+  await user.save();
+
+  return user;
+};
+
 module.exports = {
   createUser,
+  getUserProfileById,
+  updateUserProfileById,
 };
