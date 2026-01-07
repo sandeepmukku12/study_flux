@@ -1,32 +1,30 @@
 const { studyGroupService } = require("../services");
 
 // Get all study groups
-const getStudyGroups = async (req, res) => {
+const getStudyGroups = async (req, res, next) => {
     try {
-        const groups = await studyGroupService.getAllStudyGroups();
+        const groups = await studyGroupService.getAllStudyGroups(req.query);
 
         return res.status(200).json(groups);
     } catch (error) {
-        console.log(error);
-        return res.status(500).json({ msg: "Server error" });
+        next(error);
     }
 };
 
 // Create study group
-const createStudyGroup = async (req, res) => {
+const createStudyGroup = async (req, res, next) => {
     try {
         const userId = req.user.id;
         const group = await studyGroupService.addNewStudyGroup(userId, req.body);
 
         return res.status(201).json(group);
     } catch (error) {
-        console.log(error);
-        return res.status(500).json({ msg: "Server error" });
+        next(error);
     }
 };
 
 // Join group
-const joinGroup = async (req, res) => {
+const joinGroup = async (req, res, next) => {
     try {
         const userId = req.user.id;
         const groupId = req.params.id;
@@ -35,13 +33,12 @@ const joinGroup = async (req, res) => {
 
         return res.status(200).json(group);
     } catch (error) {
-        console.log(error);
-        return res.status(500).json({ msg: "Server error" });
+        next(error);
     }
 };
 
 // Leave group
-const leaveGroup = async (req, res) => {
+const leaveGroup = async (req, res, next) => {
     try {
         const userId = req.user.id;
         const groupId = req.params.id;
@@ -50,8 +47,7 @@ const leaveGroup = async (req, res) => {
 
         return res.status(200).json(group);
     } catch (error) {
-        console.log(error);
-        return res.status(500).json({ msg: "Server error" });
+        next(error);
     }
 };
 

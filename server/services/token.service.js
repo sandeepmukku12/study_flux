@@ -2,16 +2,14 @@ const jwt = require("jsonwebtoken");
 
 const generateToken = (userId, secretKey) => {
   if (!secretKey) {
-    throw new Error("JWT secret missing");
+    const error = new Error("JWT secret missing");
+    error.statusCode = 500;
+    throw error;
   }
 
-  return jwt.sign(
-    { id: userId },
-    secretKey,
-    { expiresIn: "1h" }
-  );
+  return jwt.sign({ id: userId }, secretKey, { expiresIn: "1h" });
 };
 
-module.exports = { 
-    generateToken,
+module.exports = {
+  generateToken,
 };

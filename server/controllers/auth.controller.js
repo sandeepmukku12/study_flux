@@ -2,7 +2,7 @@ const { userService, tokenService, authService } = require("../services");
 const secretKey = process.env.JWT_SECRET;
 
 // Signup
-const signup = async (req, res) => {
+const signup = async (req, res, next) => {
   try {
     const user = await userService.createUser(req.body);
 
@@ -17,16 +17,12 @@ const signup = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error(error.message);
-
-    return res.status(400).json({
-      msg: error.message || "Signup failed",
-    });
+    next(error);
   }
 };
 
 // Login
-const login = async (req, res) => {
+const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
@@ -43,8 +39,7 @@ const login = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error(error.message);
-    return res.status(400).json({ msg: error.message });
+    next(error);
   }
 };
 

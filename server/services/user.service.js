@@ -2,17 +2,19 @@ const bcrypt = require("bcryptjs");
 const { User } = require("../models");
 
 const createUser = async (userBody) => {
-  // console.log("REQ BODY:", userBody);
-
   const { name, email, password } = userBody;
 
   if (!name || !email || !password) {
-    throw new Error("All fields required");
+    const error = new Error("All fields required");
+    error.statusCode = 400;
+    throw error;
   }
 
   let user = await User.findOne({ email });
   if (user) {
-    throw new Error("User already exists");
+    const error = new Error("User already exists");
+    error.statusCode = 400;
+    throw error;
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -26,13 +28,25 @@ const createUser = async (userBody) => {
 // Get current user
 const getUserProfileById = async (userId) => {
   const user = await User.findById(userId).select("-password");
-  
+
+  if (!user) {
+    const error = new Error("User not found");
+    error.statusCode = 404;
+    throw error;
+  }
+
   return user;
 };
 
 // Update user name or password
 const updateUserProfileById = async (userId, userBody) => {
   const user = await User.findById(userId);
+
+  if (!user) {
+    const error = new Error("User not found");
+    error.statusCode = 404;
+    throw error;
+  }
 
   if (userBody.name) {
     user.name = userBody.name;
