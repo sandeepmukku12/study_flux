@@ -4,6 +4,12 @@ const { StudyGroup } = require("../models");
 const getAllStudyGroups = async (filters) => {
   const query = {};
 
+  /* Full-text search */
+  if (filters.search) {
+    query.$text = { $search: filters.search };
+  }
+
+  /* Filters */
   // Only add filters if provided
   if (filters.course) {
     query.course = filters.course;
@@ -17,19 +23,29 @@ const getAllStudyGroups = async (filters) => {
     query.skillLevel = filters.skillLevel;
   }
 
-  const groups = await StudyGroup.find(query)
-    .populate("course")
+  let mongooseQuery = StudyGroup.find(query)
+    .populate("course", "name code")
     .populate("members", "name email");
+
+  // Apply text score ONLY if search exists
+  if (filters.search) {
+    mongooseQuery = mongooseQuery
+      .select({ score: { $meta: "textScore" } })
+      .sort({ score: { $meta: "textScore" } });
+  }
+
+  const groups = await mongooseQuery;
 
   return groups;
 };
 
 // Create study group
 const addNewStudyGroup = async (userId, studyGroupBody) => {
-  const { name, course, language, skillLevel } = studyGroupBody;
+  const { name, description, course, language, skillLevel } = studyGroupBody;
 
   const group = new StudyGroup({
     name,
+    description,
     course,
     language,
     skillLevel,

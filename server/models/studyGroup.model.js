@@ -5,6 +5,9 @@ const studyGroupSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    description: {
+        type: String,
+    },
     course: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Course",
@@ -23,6 +26,12 @@ const studyGroupSchema = new mongoose.Schema({
         },
     ],
 }, { timestamps: true });
+
+/* Text index for search */
+studyGroupSchema.index({
+    name: "text",
+    description: "text",
+});
 
 const StudyGroup = mongoose.model("StudyGroup", studyGroupSchema);
 
