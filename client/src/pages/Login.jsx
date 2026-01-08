@@ -26,7 +26,7 @@ const Login = () => {
 
     try {
       await login(form.email, form.password);
-      toast.success("Login successful");
+      toast.success("✅ Login successful!");
       navigate("/study-groups");
     } catch (error) {
       toast.error(error.response?.data?.msg || "Login failed");
