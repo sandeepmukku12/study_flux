@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import api from "../api/axios";
 import GroupHeader from "../components/GroupHeader";
 import GroupMeta from "../components/GroupMeta";
 import StudySessionList from "../components/StudySessionList";
+import { useAuth } from "../context/AuthContext";
 
 const StudyGroupDetails = () => {
   const { id } = useParams();
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const [group, setGroup] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const userId = localStorage.getItem("userId"); // stored during login
+  const userId = user._id; // stored during login
 
   const fetchGroup = async () => {
     try {
@@ -35,7 +38,7 @@ const StudyGroupDetails = () => {
 
   const handleLeave = async () => {
     await api.put(`/study-groups/${id}/leave`);
-    fetchGroup();
+    navigate("/study-groups")
   };
 
   if (loading) {

@@ -52,9 +52,21 @@ const updateUserProfileById = async (userId, userBody) => {
     user.name = userBody.name;
   }
 
-  if (userBody.password) {
+  // Change password (secure)
+  if (userBody.currentPassword && userBody.newPassword) {
+    const isMatch = await bcrypt.compare(
+      userBody.currentPassword,
+      user.password
+    );
+
+    if (!isMatch) {
+      const error = new Error("Current password is incorrect");
+      error.statusCode = 400;
+      throw error;
+    }
+
     const salt = await bcrypt.genSalt(10);
-    user.password = await bcrypt.hash(userBody.password, salt);
+    user.password = await bcrypt.hash(userBody.newPassword, salt);
   }
 
   await user.save();

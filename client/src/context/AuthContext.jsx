@@ -39,13 +39,24 @@ export const AuthContextProvider = ({ children }) => {
 
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("lastSelectedTab");
+    localStorage.removeItem("studyGroupsTab");
     setUser(null);
+  };
+
+  const updateUser = (updatedFields) => {
+    setUser((prev) => ({
+      ...prev,
+      ...updatedFields,
+    }));
   };
 
   return (
     <AuthContext.Provider
       value={{
         user,
+        updateUser,
         loading,
         login,
         signup,

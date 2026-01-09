@@ -11,7 +11,7 @@ body,
   color: rgba(0, 0, 0, 0.87);
 }
 
-button {
+/* button {
   border-radius: 8px;
   border: none;
   padding: 0.7em 1.5em;
@@ -26,7 +26,40 @@ button {
 button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+} */
+
+button {
+  border-radius: 10px; /* modern rounded corners */
+  border: none;
+  padding: 0.75em 1.5em;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #4caf50 0%, #81c784 100%); /* green gradient */
+  color: #fff; /* high contrast text */
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  filter: brightness(1.1); /* brightens the button on hover */
+}
+
+button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+  filter: none;
+}
+
 
 a {
   font-weight: 500;

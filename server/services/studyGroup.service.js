@@ -1,8 +1,15 @@
 const { StudyGroup } = require("../models");
 
 // Get all study groups
-const getAllStudyGroups = async (filters) => {
+const getAllStudyGroups = async (filters, userId) => {
   const query = {};
+
+  /* Determine type: 'my' or 'discover' */
+  if (filters.type === "my") {
+    query.members = userId; // groups where user is a member
+  } else if (filters.type === "discover") {
+    query.members = { $ne: userId }; // groups where user is NOT a member
+  }
 
   /* Full-text search */
   if (filters.search) {
@@ -10,7 +17,6 @@ const getAllStudyGroups = async (filters) => {
   }
 
   /* Filters */
-  // Only add filters if provided
   if (filters.course) {
     query.course = filters.course;
   }
@@ -30,34 +36,31 @@ const getAllStudyGroups = async (filters) => {
   if (isNaN(page) || page < 1) page = 1;
   if (isNaN(limit) || limit < 1) limit = 10;
 
-  // Count total documents
+  /* Count total documents */
   const total = await StudyGroup.countDocuments(query);
   const totalPages = Math.ceil(total / limit);
 
-  // Clamp page to last page
   if (page > totalPages && totalPages > 0) {
     page = totalPages;
   }
 
-  // Calculate skip safely
   const skip = (page - 1) * limit;
 
   /* Sorting */
-  let sort = { createdAt: -1 }; //default
+  let sort = { createdAt: -1 }; // default
 
   if (filters.sortBy) {
     const order = filters.order === "asc" ? 1 : -1;
     sort = { [filters.sortBy]: order };
   }
 
+  /* Build Mongoose query */
   let mongooseQuery = StudyGroup.find(query)
     .populate("course")
     .populate("members", "name email")
     .skip(skip)
     .limit(limit);
 
-  // Apply text score ONLY if search exists
-  /* If text search → sort by relevance first */
   if (filters.search) {
     mongooseQuery = mongooseQuery
       .select({ score: { $meta: "textScore" } })
@@ -66,7 +69,6 @@ const getAllStudyGroups = async (filters) => {
     mongooseQuery = mongooseQuery.sort(sort);
   }
 
-  /* Execute queries */
   const groups = await mongooseQuery;
 
   return {
