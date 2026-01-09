@@ -11,11 +11,12 @@ import { useState } from "react";
 import AuthLayout from "../components/AuthLayout";
 import { toast } from "react-toastify";
 import { useAuth } from "../context/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const LoginPage = () => {
   const { login } = useAuth();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
   const handleTogglePassword = () => setShowPassword(!showPassword);
