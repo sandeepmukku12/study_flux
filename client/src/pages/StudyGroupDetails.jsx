@@ -4,6 +4,7 @@ import { Box, CircularProgress, Typography } from "@mui/material";
 import api from "../api/axios";
 import GroupHeader from "../components/GroupHeader";
 import GroupMeta from "../components/GroupMeta";
+import StudySessionList from "../components/StudySessionList";
 
 const StudyGroupDetails = () => {
   const { id } = useParams();
@@ -56,7 +57,7 @@ const StudyGroupDetails = () => {
     return <Typography>Group not found</Typography>;
   }
 
-  const isMember = group.members.includes(userId);
+  const isMember = group.members.some((m) => m._id === userId);
 
   return (
     <Box sx={{ px: { xs: 2, md: 4 }, py: 3 }}>
@@ -69,6 +70,7 @@ const StudyGroupDetails = () => {
 
       <Box mt={4}>
         <GroupMeta group={group} />
+        <StudySessionList groupId={group._id} />
       </Box>
     </Box>
   );

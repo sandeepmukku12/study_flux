@@ -16,8 +16,10 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const StudyGroupsPage = () => {
+  const { user } = useAuth();
   const navigate = useNavigate();
   const [groups, setGroups] = useState([]);
   const [page, setPage] = useState(1);
@@ -51,21 +53,61 @@ const StudyGroupsPage = () => {
     fetchGroups();
   }, [filters, page]);
 
-  const handleJoin = async (groupId) => {
+  // Navigate to details only if member
+  const handleShowStudyGroupDetails = (group) => {
+    const isMember = group.members.some((m) => m._id === user._id);
+    if (!isMember) {
+      toast.info("You are not a member of this group, join first");
+      return;
+    }
+    navigate(`/study-groups/${group._id}`);
+  };
+
+  // Join a group
+  const handleJoin = async (group) => {
+    const isMember = group.members.some((m) => m._id === user._id);
+    if (isMember) {
+      toast.info("You are already a member of this group");
+      return;
+    }
+
     try {
-      await api.put(`/study-groups/${groupId}/join`);
+      await api.put(`/study-groups/${group._id}/join`);
       toast.success("Joined study group");
-      fetchGroups();
+
+      // Optimistically update members array
+      setGroups((prev) =>
+        prev.map((g) =>
+          g._id === group._id
+            ? { ...g, members: [...g.members, { _id: user._id }] }
+            : g
+        )
+      );
     } catch (err) {
       toast.error(err.response?.data?.msg || "Join failed");
     }
   };
 
-  const handleLeave = async (groupId) => {
+  // Leave a group
+  const handleLeave = async (group) => {
+    const isMember = group.members.some((m) => m._id === user._id);
+    if (!isMember) {
+      toast.info("You are not a member of this group");
+      return;
+    }
+
     try {
-      await api.put(`/study-groups/${groupId}/leave`);
+      await api.put(`/study-groups/${group._id}/leave`);
       toast.success("Left study group");
-      fetchGroups();
+
+      // Optimistically remove user from members
+      setGroups((prev) =>
+        prev.map((g) =>
+          g._id === group._id
+            ? { ...g, members: g.members.filter((m) => m._id !== user._id) }
+            : g
+        )
+      );
     } catch (err) {
       toast.error(err.response?.data?.msg || "Leave failed");
     }
@@ -136,7 +178,7 @@ const StudyGroupsPage = () => {
           {groups.map((group) => (
             <Grid item xs={12} sm={6} md={4} key={group._id}>
               <Card
-                onClick={() => navigate(`/study-groups/${group._id}`)}
+                onClick={() => handleShowStudyGroupDetails(group)}
                 sx={{
                   height: "100%",
                   borderRadius: 3,
@@ -169,7 +211,7 @@ const StudyGroupsPage = () => {
                     variant="contained"
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleJoin(group._id);
+                      handleJoin(group);
                     }}
                   >
                     Join
@@ -181,7 +223,7 @@ const StudyGroupsPage = () => {
                     color="error"
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleLeave(group._id);
+                      handleLeave(group);
                     }}
                   >
                     Leave
