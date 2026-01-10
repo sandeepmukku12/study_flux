@@ -23,18 +23,40 @@ export const AuthContextProvider = ({ children }) => {
     }
   }, []);
 
+  // const login = async (email, password) => {
+  //   const res = await api.post("/auth/login", { email, password });
+  //   localStorage.setItem("token", res.data.token);
+  //   localStorage.setItem("userId", res.data.user.id);
+  //   setUser(res.data.user);
+  // };
+
+  // const signup = async (name, email, password) => {
+  //   const res = await api.post("/auth/signup", { name, email, password });
+  //   localStorage.setItem("token", res.data.token);
+  //   localStorage.setItem("userId", res.data.user.id);
+  //   setUser(res.data.user);
+  // };
+
+  // AuthContext.jsx - Updated Functions
+
   const login = async (email, password) => {
     const res = await api.post("/auth/login", { email, password });
     localStorage.setItem("token", res.data.token);
-    localStorage.setItem("userId", res.data.user.id);
-    setUser(res.data.user);
+    
+    // IMPORTANT: Instead of just trusting the login response user object, 
+    // fetch the fresh /me profile to ensure data consistency 
+    // (enrolledCourses array must be present)
+    const profileRes = await api.get("/users/me");
+    setUser(profileRes.data); 
   };
 
   const signup = async (name, email, password) => {
     const res = await api.post("/auth/signup", { name, email, password });
     localStorage.setItem("token", res.data.token);
-    localStorage.setItem("userId", res.data.user.id);
-    setUser(res.data.user);
+    
+    // Same as login: get the full profile immediately
+    const profileRes = await api.get("/users/me");
+    setUser(profileRes.data);
   };
 
   const logout = () => {

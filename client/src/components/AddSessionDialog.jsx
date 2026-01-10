@@ -29,6 +29,13 @@ const AddSessionDialog = ({ open, onClose, groupId, onCreated }) => {
         groupId,
       });
 
+      setForm({
+        topic: "",
+        date: "",
+        startTime: "",
+        duration: "",
+      });
+
       toast.success("Study session scheduled");
       onCreated();
       onClose();

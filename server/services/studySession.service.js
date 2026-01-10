@@ -61,7 +61,33 @@ const getSessionsByGroupByGroupId = async (userId, groupId) => {
   return sessions;
 };
 
+// Delete session
+const removeStudySessionById = async (userId, sessionId) => {
+  const session = await StudySession.findById(sessionId);
+
+  if (!session) {
+    const error = new Error("Study session not found");
+    error.statusCode = 404;
+    throw error;
+  }
+
+  // Check if group exists and if user is a member to allow deletion
+  const group = await StudyGroup.findById(session.group);
+  
+  if (!group || !group.members.includes(userId)) {
+    const error = new Error(
+      "You do not have permission to delete this session"
+    );
+    error.statusCode = 403;
+    throw error;
+  }
+
+  await StudySession.findByIdAndDelete(sessionId);
+  return true;
+};
+
 module.exports = {
   addNewStudySession,
   getSessionsByGroupByGroupId,
+  removeStudySessionById,
 };

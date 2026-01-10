@@ -10,6 +10,7 @@ import StudyGroupDetails from "./pages/StudyGroupDetails";
 import ProtectedRoute from "./components/ProtectedRoute";
 import StudySessionList from "./components/StudySessionList";
 import ProfilePage from "./pages/ProfilePage";
+import CourseDetailsPage from "./pages/CourseDetailsPage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/study-groups" element={<StudyGroupsPage />} />
             <Route path="/study-groups/:id" element={<StudyGroupDetails />} />
             <Route path="/courses" element={<Courses />} />
+            <Route path="/courses/:id" element={<CourseDetailsPage />} />
             <Route path="/study-sessions" element={<StudySessionList />} />
             <Route path="/profile" element={<ProfilePage />} />
           </Route>
