@@ -383,7 +383,7 @@ import {
   Group,
   Book,
   CalendarToday,
-  Event,
+  LibraryBooks,
   AccountCircle,
   Logout as LogoutIcon,
 } from "@mui/icons-material";
@@ -413,7 +413,7 @@ const DashboardLayout = () => {
     { text: "Study Groups", icon: <Group />, path: "/study-groups" },
     { text: "Courses", icon: <Book />, path: "/courses" },
     { text: "Planner", icon: <CalendarToday />, path: "/planner" },
-    { text: "Sessions", icon: <Event />, path: "/study-sessions" },
+    { text: "Resources", icon: <LibraryBooks />, path: "/resources" },
     { text: "Profile", icon: <AccountCircle />, path: "/profile" },
   ];
 

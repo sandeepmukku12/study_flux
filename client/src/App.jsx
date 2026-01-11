@@ -11,6 +11,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import StudySessionList from "./components/StudySessionList";
 import ProfilePage from "./pages/ProfilePage";
 import CourseDetailsPage from "./pages/CourseDetailsPage";
+import PlannerPage from "./pages/Planner";
+import ResourcesPage from "./pages/ResourcesPage";
 
 function App() {
   return (
@@ -29,7 +31,8 @@ function App() {
             <Route path="/study-groups/:id" element={<StudyGroupDetails />} />
             <Route path="/courses" element={<Courses />} />
             <Route path="/courses/:id" element={<CourseDetailsPage />} />
-            <Route path="/study-sessions" element={<StudySessionList />} />
+            <Route path="/planner" element={<PlannerPage />} />
+            <Route path="/resources" element={<ResourcesPage />} />
             <Route path="/profile" element={<ProfilePage />} />
           </Route>
         </Route>

@@ -554,7 +554,7 @@ const CourseDetailsPage = () => {
           </Grid>
 
           {/* Right Side: Action Button Fixed to Far Right */}
-          <Grid item xs={12} md={3} sx={{ display: 'flex', justifyContent: { md: 'space-between' }, textAlign: { md: 'right' }, marginLeft: { md: '460px' } }}>
+          <Grid item xs={12} md={3} sx={{ display: 'flex', justifyContent: { md: 'space-between' }, textAlign: { md: 'right' }, }}>
             {!isEnrolled ? (
               <Button 
                 variant="contained" 
@@ -607,7 +607,13 @@ const CourseDetailsPage = () => {
             const isMember = group.members?.some((m) => String(m._id || m) === String(user._id));
             return (
               <Grid item xs={12} sm={6} md={4} key={group._id}>
-                <Card sx={{ borderRadius: 4, border: '1px solid', borderColor: 'divider', '&:hover': { boxShadow: 4 } }} elevation={0}>
+                <Card onClick={() => {
+                    if (isMember) {
+                        navigate(`/study-groups/${group._id}`);
+                    } else {
+                        toast.info("Join group to view the details")
+                    }
+                }} sx={{ borderRadius: 4, border: '1px solid', borderColor: 'divider', '&:hover': { boxShadow: 4 }, cursor: "pointer" }} elevation={0}>
                   <CardContent sx={{ p: 3 }}>
                     <Typography variant="h6" fontWeight="bold" noWrap sx={{ mb: 1 }}>{group.name}</Typography>
                     <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
@@ -617,9 +623,15 @@ const CourseDetailsPage = () => {
                     <Typography variant="body2" color="text.secondary">{group.members.length} members</Typography>
                     <Box sx={{ mt: 3 }}>
                       {isMember ? (
-                        <Button fullWidth variant="outlined" color="error" onClick={() => handleLeaveGroup(group._id)} sx={{ borderRadius: 2.5, fontWeight: 'bold' }}>Leave</Button>
+                        <Button fullWidth variant="outlined" color="error" onClick={(e) => {
+                            e.stopPropagation();
+                            handleLeaveGroup(group._id);
+                        }} sx={{ borderRadius: 2.5, fontWeight: 'bold' }}>Leave</Button>
                       ) : (
-                        <Button fullWidth variant="contained" onClick={() => handleJoinGroup(group._id)} sx={{ borderRadius: 2.5, fontWeight: 'bold' }}>Join</Button>
+                        <Button fullWidth variant="contained" onClick={(e) => {
+                            e.stopPropagation();
+                            handleJoinGroup(group._id);
+                        }} sx={{ borderRadius: 2.5, fontWeight: 'bold' }}>Join</Button>
                       )}
                     </Box>
                   </CardContent>
