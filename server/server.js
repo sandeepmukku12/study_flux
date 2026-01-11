@@ -11,7 +11,14 @@ const MONGO_DB_URI = process.env.MONGO_DB_URI;
 
 const app = express();
 
-app.use(cors());
+
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://your-vercel-app.vercel.app"
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 //MongoDB Connection
