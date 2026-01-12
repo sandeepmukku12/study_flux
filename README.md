@@ -16,6 +16,7 @@ sessions** in one place, Study Flux supports **structured collaboration** and **
 - [🚀 Usage](#-usage)
 - [🏗 App Structure](#-app-structure)
 - [🗂 Key Files](#-key-files)
+- [🧩 Core Functionality](#-core-functionality)
 - [🔐 Security & Rules](#-security--rules)
 - [🧱 System Architecture](#-system-architecture)
 - [🔗 Database Schema & Relationships](#-database-schema--relationships)
@@ -200,6 +201,80 @@ Here are the important files in the Study Flux project and their purposes:
 
 ---
 
+## 🧩 Core Functionality
+
+### 🔐 Authentication
+- User signup and login using JWT  
+- Protected routes across the application  
+
+
+### 📘 Courses
+- View all available courses  
+- Create your own courses  
+- Enroll in courses  
+- Course details page includes:
+  - Course information  
+  - Related study groups  
+  - Study group access only for enrolled users  
+
+
+### 👥 Study Groups
+- View study groups under:
+  - **My Groups**
+  - **Discover Groups**
+- Join and leave study groups  
+- Create course-specific study groups  
+- Study group details page includes:
+  - Members list  
+  - Study sessions list  
+  - Create and delete sessions (creator only)  
+  - Leave group  
+  - Delete group (creator only)  
+
+⚠️ **Cascade Delete**  
+Deleting a study group automatically removes all related study sessions.
+
+
+### 📅 Study Sessions
+- Create sessions within study groups  
+- Track session details:
+  - Topic  
+  - Date & time  
+  - Duration  
+- Delete sessions (creator only)  
+
+
+### 🧭 Planner
+- 📌 **Upcoming Agenda** – View future study sessions  
+- 📜 **Study History** – View past sessions  
+- 📊 **Overall Stats**:
+  - Total sessions attended  
+  - Total study duration  
+
+Designed to improve **motivation and consistency** 💪
+
+
+### 🔍 Resources
+- View trending courses based on member count  
+- Search courses  
+- Filter courses easily  
+
+
+### 👤 Profile
+- Update user name  
+- Change password securely  
+
+
+### 🧭 Navigation (Sidebar)
+The sidebar is persistent across all pages and includes:
+- 📘 Courses  
+- 👥 Study Groups  
+- 📅 Planner  
+- 📚 Resources  
+- 👤 Profile  
+
+---
+
 ## 🔐 Security & Rules
 
 - 🔄 **Cascade Deletion**: When a study group is deleted, all related study sessions are automatically removed from the database.  
@@ -233,3 +308,4 @@ Study Flux uses a relational approach within MongoDB to handle the complex depen
 - 👤 **Ownership Rules** – Both `StudyGroup` and `StudySession` store a `creator` field to enforce permission-based actions.
 
 ---
+
