@@ -5,3 +5,22 @@
 sessions** in one place, Study Flux supports **structured collaboration** and **consistent study habits** ✨.
 
 ---
+
+## 📚 Table of Contents
+
+- [🛠️ Tech Stack](#-tech-stack)
+- [✨ Features](#-features)
+- [🎨 UI Highlights](#-ui-highlights)
+- [🖼️ Screenshots](#-screenshots)
+- [📦 Installation & Setup](#-installation--setup)
+- [🚀 Usage](#-usage)
+- [🏗 App Structure](#-app-structure)
+- [🔌 API Reference](#-api-reference)
+- [🗺️ Application Map](#-application-map)
+- [🛡️ Security & Rules](#-security--rules)
+- [🏛️ System Architecture](#-system-architecture)
+- [🗃️ Database Schema & Relationships](#-database-schema--relationships)
+- [📈 Future Enhancements](#-future-enhancements)
+- [❤️ Built With Love](#-built-with-love)
+
+---
