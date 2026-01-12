@@ -125,3 +125,17 @@ To get started with **Study Flux**, follow these steps:
 - Make sure the backend server is running before using the frontend.
 
 ---
+
+## 🚀 Usage
+
+To get the most out of **Study Flux**, follow this typical user flow:
+
+- **Authentication** – Start by creating an account on the Signup page. Once logged in, you'll be directed to the main dashboard.  
+- **Course Enrollment** – Navigate to the **Courses** menu via the sidebar. Browse the available catalog or create your own course. Click on a course card to view details and hit **Enroll**.  
+- **Joining Groups** – After enrolling, the course detail page will show associated **Study Groups**. You can join an existing group or create a new one for that course.  
+- **Collaboration** – Inside a Study Group, view the member list and check upcoming **Study Sessions**. If you are a group member, you can schedule new sessions.  
+- **Planning & Stats** – Use the **Planner** to view your schedule. The "Overall Stats" section automatically updates your total study duration and session count to help track your consistency.
+- **Resources** - Use the **Resources** to view the most trending groups, filter courses and more.
+- **Profile** - Use the **Profile** to update your profile.
+
+---
