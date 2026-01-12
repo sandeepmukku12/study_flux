@@ -173,8 +173,6 @@ study-flux/
 
 Here are the important files in the Study Flux project and their purposes:
 
----
-
 ### 🖥️ Frontend (`client/`)
 - `src/App.jsx` – Main React component that wraps all pages and routes.  
 - `src/main.jsx` – Entry point for the React + Vite app.  
@@ -182,8 +180,6 @@ Here are the important files in the Study Flux project and their purposes:
 - `src/pages/` – Individual pages (Dashboard, Courses, Study Groups, Planner, Profile, Resources).    
 - `src/services/` – Handles API calls to the backend using Axios.  
 - `src/context/` – Global state management for auth.  
-
----
 
 ### ⚙️ Backend (`server/`)
 - `index.js` – Entry point for the Express backend server and MongoDB connection setup.  
@@ -197,9 +193,7 @@ Here are the important files in the Study Flux project and their purposes:
 - `models/` – Mongoose schemas for Users, Courses, StudyGroups, and StudySessions.  
 - `routes/` – API endpoint definitions.  
 - `services/` – Business logic separate from controllers.  
-- `middleware/` – JWT authentication and centralized error handling.  
-
----
+- `middleware/` – JWT authentication and centralized error handling.
 
 ### 🏠 Root Files
 - `README.md` – Project documentation.  
