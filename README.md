@@ -139,3 +139,30 @@ To get the most out of **Study Flux**, follow this typical user flow:
 - **Profile** - Use the **Profile** to update your profile.
 
 ---
+
+## 🏗 App Structure
+
+study-flux/
+│
+├─ client/ # Frontend built with React + Vite
+│ ├─ public/ # Static assets (images, icons, etc.)
+│ ├─ src/
+│ │ ├─ components/ # Reusable React components
+| | ├─ dashboard/ # Dashboard layout
+│ │ ├─ pages/ # Page components (Login, Signup, Courses, Study Groups, Planner, Profile, Resources)
+│ │ ├─ routes/ # React Router routes
+│ │ ├─ api/ # API calls using Axios
+│ │ └─ context/ # React context for global state (auth, courses, groups)
+│ └─ .env # Environment variables (DB URI, JWT secret)
+|
+├─ server/ # Backend built with Node.js + Express
+│ ├─ controllers/ # Handles incoming requests
+│ ├─ models/ # Mongoose schemas
+│ ├─ routes/ # API route definitions
+│ ├─ services/ # Business logic for controllers
+│ ├─ middleware/ # Authentication & error handling
+| └─ .env # Environment variables (DB URI, JWT secret)
+│
+└─ README.md # Project documentation
+
+---
