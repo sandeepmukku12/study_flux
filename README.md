@@ -8,7 +8,7 @@ sessions** in one place, Study Flux supports **structured collaboration** and **
 
 ## 📚 Table of Contents
 
-- [🛠️ Tech Stack](#--tech-stack)
+- [🛠️ Tech Stack](#-tech-stack)
 - [✨ Features](#-features)
 - [🎨 UI Highlights](#-ui-highlights)
 - [🖼️ Screenshots](#-screenshots)
@@ -42,5 +42,23 @@ sessions** in one place, Study Flux supports **structured collaboration** and **
 - 🍃 **MongoDB & Mongoose (ODM)** – Stores app data and provides schema-based data modeling.  
 - 🔑 **JWT (JSON Web Token)** – Secure, stateless authentication for user sessions.  
 - 🛡️ **Bcryptjs** – Hashes passwords for secure user authentication.
+
+---
+
+## ✨ Features
+
+- 🔒 **Enrollment-Gated Access** – Study groups are private communities. You can only view and participate if you are officially enrolled in the parent course.  
+- 🧹 **Smart Cascade Delete** – Keeps the database clean. If a user deletes a Study Group, all related Study Sessions are automatically removed.  
+- 📊 **Motivation Dashboard** – The Planner shows your study history and calculates total study hours to help gamify your learning.  
+- 🔍 **Advanced Discovery** – The Resources page highlights trending courses based on member count and supports full-text search with filters.  
+- 📱 **Persistent Navigation** – A unified Sidebar keeps Planner, Profile, and Resources just one click away across the app.  
+
+- 🔐 **Authentication** – Signup & Login with JWT for secure access.  
+- 📘 **Courses** – Browse, enroll, and create courses.  
+- 👥 **Study Groups** – Join, create, and leave course-specific study groups.  
+- 📅 **Study Sessions** – Schedule, track, and manage study sessions.  
+- 🧭 **Planner** – View upcoming agenda, study history, and overall stats.  
+- 🔍 **Resources** – Search and filter trending courses efficiently.  
+- 👤 **Profile** – Update your name and password easily.
 
 ---
