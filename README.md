@@ -317,3 +317,12 @@ Study Flux uses a relational approach within MongoDB to handle the complex depen
 - 📊 **Advanced Analytics Dashboard**  
 
 ---
+
+## ❤️ Built With Love
+
+**Study Flux** was built with ❤️ by Sandeep Mukku  
+It’s designed to help students **collaborate**, **organize**, and **track their learning** in one simple and intuitive platform.  
+
+Thank you for checking out the project! 🙌
+
+---
