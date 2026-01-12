@@ -17,8 +17,8 @@ sessions** in one place, Study Flux supports **structured collaboration** and **
 - [🏗 App Structure](#-app-structure)
 - [🗂 Key Files](#-key-files)
 - [🔐 Security & Rules](#-security--rules)
-- [⚙️ System Architecture](#-system-architecture)
-- [🗃️ Database Schema & Relationships](#-database-schema--relationships)
+- [🧱 System Architecture](#-system-architecture)
+- [🔗 Database Schema & Relationships](#-database-schema--relationships)
 - [📈 Future Enhancements](#-future-enhancements)
 - [❤️ Built With Love](#-built-with-love)
 
@@ -208,13 +208,13 @@ Here are the important files in the Study Flux project and their purposes:
 
 ---
 
-## ⚙️ System Architecture
+## 🧱 System Architecture
 
 The application follows a classic **client-server architecture**. The React frontend communicates with the Node.js/Express backend via a **RESTful API**, secured using **JWT authentication**.
 
 ---
 
-## 🗃️ Database Schema & Relationships
+## 🔗 Database Schema & Relationships
 
 ### Schema
 
