@@ -172,10 +172,10 @@ To get started with **Study Flux**, follow these steps:
    cd client
    npm install
    ```
-   Create a `.env` file in the `server` directory:
+   Create a `.env` file in the `client` directory:
 
    ```env
-   
+   VITE_APP_URL=http://localhost:5173
    ```
 
    Start the Vite development server:
