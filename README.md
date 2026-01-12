@@ -62,3 +62,12 @@ sessions** in one place, Study Flux supports **structured collaboration** and **
 - 👤 **Profile** – Update your name and password easily.
 
 ---
+
+## 🎨 UI Highlights
+
+- ✨ **Clean Design** – Built with Material-UI for a modern and consistent look.  
+- 📱 **Responsive Layout** – Works smoothly on desktops, tablets, and mobile devices.  
+- 🔔 **Toast Notifications** – Real-time alerts for user actions and feedback.  
+- 🧭 **Intuitive Navigation** – Easy-to-use Sidebar and menu for seamless app navigation.  
+
+---
