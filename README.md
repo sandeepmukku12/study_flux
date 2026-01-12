@@ -139,8 +139,8 @@ To get started with **Study Flux**, follow these steps:
 ### 1. Clone the repository
 
    ```bash
-   git clone [https://github.com/sandeepmukku12/student_course_planner_mern.git](https://github.com/sandeepmukku12/student_course_planner_mern.git)
-   cd study-flux
+   git clone https://github.com/sandeepmukku12/study_flux.git
+   cd study_flux
    ```
 
 ### 2. Backend Setup
