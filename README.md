@@ -8,7 +8,7 @@ sessions** in one place, Study Flux supports **structured collaboration** and **
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)
-![Author](https://img.shields.io/badge/Author-Sandeep-Mukku-orange.svg)
+![Author](https://img.shields.io/badge/Author-Sandeep%20Mukku-orange.svg)
 
 ---
 
