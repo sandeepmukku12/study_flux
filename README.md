@@ -78,6 +78,60 @@ sessions** in one place, Study Flux supports **structured collaboration** and **
 
 ---
 
+## 🖼 Screenshots
+
+### Courses Page
+<div align="center">
+  <img alt="Courses Page" src="./screenshots/courses.jpg" width="700"/>
+</div>
+
+### Course Details Page
+<div align="center">
+  <img alt="Course Details Page" src="./screenshots/course-details.jpg" width="700"/>
+</div>
+
+### Study Groups Page
+<div align="center">
+  <img alt="Study Groups Page" src="./screenshots/study-groups.jpg" width="700"/>
+</div>
+
+### Study Group Details Page
+<div align="center">
+  <img alt="Study Group Details Page" src="./screenshots/study-group-details.jpg" width="700"/>
+</div>
+
+### Planner Page
+<div align="center">
+  <img alt="Planner Page" src="./screenshots/planner.jpg" width="700"/>
+</div>
+
+### Resources Page
+<div align="center">
+  <img alt="Resources Page" src="./screenshots/resources.jpg" width="700"/>
+</div>
+
+### Signup Page
+<div align="center">
+  <img alt="Signup Page" src="./screenshots/signup.jpg" width="700"/>
+</div>
+
+### Login Page
+<div align="center">
+  <img alt="Login Page" src="./screenshots/login.jpg" width="700"/>
+</div>
+
+### Study Sessions Page
+<div align="center">
+  <img alt="Study Sessions Page" src="./screenshots/study-sessions.jpg" width="700"/>
+</div>
+
+### Profile Page
+<div align="center">
+  <img alt="Profile Page" src="./screenshots/profile.jpg" width="700"/>
+</div>
+
+---
+
 ## 📦 Installation & Setup
 
 To get started with **Study Flux**, follow these steps:
@@ -85,8 +139,8 @@ To get started with **Study Flux**, follow these steps:
 ### 1. Clone the repository
 
    ```bash
-   git clone [https://github.com/sandeepmukku12/student_course_planner_mern.git](https://github.com/sandeepmukku12/student_course_planner_mern.git)
-   cd study-flux
+   git clone https://github.com/sandeepmukku12/study_flux.git
+   cd study_flux
    ```
 
 ### 2. Backend Setup
@@ -117,6 +171,11 @@ To get started with **Study Flux**, follow these steps:
    ```bash
    cd client
    npm install
+   ```
+   Create a `.env` file in the `client` directory:
+
+   ```env
+   VITE_API_URL=http://localhost:8082/api
    ```
 
    Start the Vite development server:
@@ -157,10 +216,9 @@ study-flux/
 │ │ ├─ components/ # Reusable React components
 | | ├─ dashboard/ # Dashboard layout
 │ │ ├─ pages/ # Page components (Login, Signup, Courses, Study Groups, Planner, Profile, Resources)
-│ │ ├─ routes/ # React Router routes
 │ │ ├─ api/ # API calls using Axios
 │ │ └─ context/ # React context for global state (auth)
-│ └─ .env # Environment variables (DB URI, JWT secret)
+│ └─ .env # Environment variables (VITE_APP_URL)
 |
 ├─ server/ # Backend built with Node.js + Express
 │ ├─ controllers/ # Handles incoming requests
@@ -168,7 +226,7 @@ study-flux/
 │ ├─ routes/ # API route definitions
 │ ├─ services/ # Business logic for controllers
 │ ├─ middleware/ # Authentication & error handling
-| └─ .env # Environment variables (DB URI, JWT secret)
+| └─ .env # Environment variables (PORT, DB URI, JWT secret)
 │
 └─ README.md # Project documentation
 ```
@@ -184,7 +242,7 @@ Here are the important files in the Study Flux project and their purposes:
 - `src/main.jsx` – Entry point for the React + Vite app.  
 - `src/components/` – Reusable UI components like buttons, cards, and modals.  
 - `src/pages/` – Individual pages (Dashboard, Courses, Study Groups, Planner, Profile, Resources).    
-- `src/services/` – Handles API calls to the backend using Axios.  
+- `src/api/` – Handles API calls to the backend using Axios.  
 - `src/context/` – Global state management for auth.  
 
 ### ⚙️ Backend (`server/`)
@@ -332,7 +390,7 @@ This project is licensed under the **MIT License**. See the LICENSE file for mor
 
 ## ❤️ Built With Love
 
-**Study Flux** was built with ❤️ by Sandeep Mukku  
+**Study Flux** was built with ❤️ by **Sandeep Mukku**  
 It’s designed to help students **collaborate**, **organize**, and **track their learning** in one simple and intuitive platform.  
 
 Thank you for checking out the project! 🙌
